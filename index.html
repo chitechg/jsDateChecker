@@ -1,0 +1,49 @@
+
+<p class="date">Date</p>
+<p class="dayType">Day Type</p>
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+
+var monthNames = [ "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December" ];
+var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+var newDate = new Date();
+newDate.setDate(newDate.getDate());  
+
+var todayDay = dayNames[newDate.getDay()];
+var todayDate = newDate.getDate();
+var todayMonth = monthNames[newDate.getMonth()];
+var todayYear = newDate.getFullYear();
+var ScheduleCheck = (newDate.getMonth() + 1) + '/' + newDate.getDate();
+
+$('.date').html(todayDay + ", " + todayDate + ' ' + todayMonth + ' ' + todayYear);
+
+if ( ScheduleCheck == '1/1'   // New Year's Day
+		|| ScheduleCheck == '6/14'  // Flag Day
+		|| ScheduleCheck == '7/4'   // Independence Day
+		|| ScheduleCheck == '11/11' // Veterans Day
+		|| ScheduleCheck == '12/25' // Christmas Day
+		|| ScheduleCheck == '12/31' // New Years Day
+		){
+  $('.dayType').html("No School: National Holiday");
+} else if ( ScheduleCheck == '1/19'   // Exhibition
+		|| ScheduleCheck == '1/20'   // Exhibition
+		|| ScheduleCheck == '1/21'   // Exhibition
+		){
+  $('.dayType').html("Today has a special schedule");
+} else if(newDate.getDay() == 1 || newDate.getDay() == 3){
+  $('.dayType').html("Today is an A day.");
+} else if(newDate.getDay() == 2 || newDate.getDay() == 4){
+  $('.dayType').html("Today is a B day.");
+} else if(newDate.getDay() == 5){
+  $('.dayType').html("Today is an X day.");
+} else if(newDate.getDay() == 0 || newDate.getDay() == 6){
+  $('.dayType').html("No School: Today is the Weekend");
+} 
+
+
+
+</script>
